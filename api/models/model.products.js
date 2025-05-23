@@ -35,7 +35,7 @@ class Product {
 
   save() {
     const sql =
-      'INSERT INTO tblProducts(`category_id`,`brand_id`,`sub_id`,`unit_id`,`product_code`,`product_name`,qty,unit_price,price,exp_date,product_image,`desc`,`status`,reorder_number) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+      'INSERT INTO tblproducts(`category_id`,`brand_id`,`sub_id`,`unit_id`,`product_code`,`product_name`,qty,unit_price,price,exp_date,product_image,`desc`,`status`,reorder_number) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
 
     return db.execute(sql, [
       this.category_id,
@@ -73,7 +73,7 @@ class Product {
     product_id
   ) {
     const sql =
-      'UPDATE tblProducts SET category_id=?,brand_id=?,unit_id=?,sub_id=?,product_code=?,product_name=?,qty=?,unit_price=?,price=?,exp_date=?,product_image=?,`desc`=?,`status`=?,reorder_number=? WHERE product_id=?';
+      'UPDATE tblproducts SET category_id=?,brand_id=?,unit_id=?,sub_id=?,product_code=?,product_name=?,qty=?,unit_price=?,price=?,exp_date=?,product_image=?,`desc`=?,`status`=?,reorder_number=? WHERE product_id=?';
     return db.query(sql, [
       category_id,
       brand_id,
@@ -94,55 +94,55 @@ class Product {
   }
 
   static findImageById(id) {
-    const sql = 'SELECT product_image FROM tblProducts WHERE product_id=?';
+    const sql = 'SELECT product_image FROM tblproducts WHERE product_id=?';
     return db.execute(sql, [id]);
   }
 
   static findProductByName(product_name) {
-    const sql = 'SELECT product_name FROM tblProducts WHERE product_name = ?';
+    const sql = 'SELECT product_name FROM tblproducts WHERE product_name = ?';
     return db.execute(sql, [product_name]);
   }
 
   static findProductCode(product_code) {
-    const sql = 'SELECT product_code FROM tblProducts WHERE product_code = ?';
+    const sql = 'SELECT product_code FROM tblproducts WHERE product_code = ?';
     return db.execute(sql, [product_code]);
   }
 
   static findAllProduct() {
-    const v_sql = `SELECT *FROM getAllProducts`;
+    const v_sql = `SELECT *FROM getallproducts`;
     return db.execute(v_sql);
   }
 
   static findDuplicateByName(id, product_name) {
     const sql =
-      'SELECT *FROM tblProducts WHERE NOT product_id=? AND product_name=?';
+      'SELECT *FROM tblproducts WHERE NOT product_id=? AND product_name=?';
     return db.execute(sql, [id, product_name]);
   }
 
   static findDuplicateByProductCode(id, product_code) {
     const sql =
-      'SELECT *FROM tblProducts WHERE NOT product_id=? AND product_code=?';
+      'SELECT *FROM tblproducts WHERE NOT product_id=? AND product_code=?';
     return db.execute(sql, [id, product_code]);
   }
 
   static deleteById(id) {
-    const sql = 'DELETE FROM tblProducts WHERE product_id = ?';
+    const sql = 'DELETE FROM tblproducts WHERE product_id = ?';
     return db.execute(sql, [id]);
   }
 
   static deleteImageById(id) {
-    const sql = "UPDATE tblProducts SET product_image='images/default.png' WHERE product_id=?";
+    const sql = "UPDATE tblproducts SET product_image='images/default.png' WHERE product_id=?";
     return db.execute(sql, [id]);
   }
 
   static findProductById(id) {
-    const sql = 'SELECT *FROM tblProducts WHERE product_id=?';
+    const sql = 'SELECT *FROM tblproducts WHERE product_id=?';
     return db.execute(sql, [id]);
   }
 
   static productCard() {
     const sql =
-      'SELECT product_id,product_name,price,product_image,qty,product_code,category_id FROM tblProducts WHERE `status` = 1 AND qty>0';
+      'SELECT product_id,product_name,price,product_image,qty,product_code,category_id FROM tblproducts WHERE `status` = 1 AND qty>0';
     return db.execute(sql);
   }
 
@@ -153,7 +153,7 @@ class Product {
 
   static findByProcode(procode) {
     const sql =
-      'SELECT product_id,product_name,price,product_image,qty,product_code FROM tblProducts WHERE `status` = 1 AND product_code=?';
+      'SELECT product_id,product_name,price,product_image,qty,product_code FROM tblproducts WHERE `status` = 1 AND product_code=?';
     return db.execute(sql, [procode]);
   }
 
@@ -189,12 +189,12 @@ class Product {
 
   static ReorderMsg() {
     const sql =
-      'SELECT * FROM `getAllProducts` WHERE (getAllProducts.qty<=getAllProducts.reorder_number) AND (getAllProducts.qty>0)';
+      'SELECT * FROM `getallproducts` WHERE (getallproducts.qty<=getallproducts.reorder_number) AND (getallproducts.qty>0)';
     return db.execute(sql);
   }
 
   static OutOfStockMsg() {
-    const sql = 'SELECT * FROM `getAllProducts` WHERE getAllProducts.qty=0';
+    const sql = 'SELECT * FROM `getallproducts` WHERE getallproducts.qty=0';
     return db.execute(sql);
   }
 
@@ -220,7 +220,7 @@ class Product {
   }
 
   static updateImage(path,id){
-    const sql = "UPDATE tblProducts SET product_image=? WHERE product_id=?";
+    const sql = "UPDATE tblproducts SET product_image=? WHERE product_id=?";
     return db.execute(sql,[path,id])
   }
 

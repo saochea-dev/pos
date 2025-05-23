@@ -12,7 +12,7 @@ class Users {
 
   save() {
     const sql =
-      'INSERT INTO tblUsers(role_id,status_id,username,password,email,phone_number) VALUES(?,?,?,?,?,?)';
+      'INSERT INTO tblusers(role_id,status_id,username,password,email,phone_number) VALUES(?,?,?,?,?,?)';
     return db.execute(sql, [
       this.role_id,
       this.status_id,
@@ -34,65 +34,65 @@ class Users {
   }
 
   static findByUsername(username) {
-    const sql = `SELECT id,username,email,tblRoles.role_name,password FROM tblUsers 
-    INNER JOIN tblRoles ON tblUsers.role_id = tblRoles.role_id WHERE username = ? AND status_id=1`;
+    const sql = `SELECT id,username,email,tblroles.role_name,password FROM tblusers 
+    INNER JOIN tblroles ON tblusers.role_id = tblroles.role_id WHERE username = ? AND status_id=1`;
     return db.execute(sql, [username]);
   }
 
   static check_name(username) {
-    const sql = 'SELECT *FROM tblUsers WHERE username=?';
+    const sql = 'SELECT *FROM tblusers WHERE username=?';
     return db.execute(sql, [username]);
   }
 
   static findByEmail(email) {
-    const sql = `SELECT id,username,email,tblRoles.role_name,password FROM tblUsers 
-    INNER JOIN tblRoles ON tblUsers.role_id = tblRoles.role_id WHERE email = ? AND status_id =1`;
+    const sql = `SELECT id,username,email,tblroles.role_name,password FROM tblusers 
+    INNER JOIN tblroles ON tblusers.role_id = tblroles.role_id WHERE email = ? AND status_id =1`;
     return db.execute(sql, [email]);
   }
 
   static check_email(email) {
-    const sql = 'SELECT *FROM tblUsers WHERE email = ?';
+    const sql = 'SELECT *FROM tblusers WHERE email = ?';
     return db.execute(sql, [email]);
   }
 
   static updateRefreshToken(id, refreshToken) {
-    const sql = 'UPDATE tblUsers SET token = ? WHERE id = ?';
+    const sql = 'UPDATE tblusers SET token = ? WHERE id = ?';
     return db.query(sql, [refreshToken, id]);
   }
 
   static findByRefreshToken(refresh_token) {
-    const sql = `SELECT username,email,id,tblRoles.role_name FROM tblUsers 
-    INNER JOIN tblRoles ON tblUsers.role_id = tblRoles.role_id
+    const sql = `SELECT username,email,id,tblroles.role_name FROM tblusers 
+    INNER JOIN tblroles ON tblusers.role_id = tblroles.role_id
     WHERE token = ?`;
     return db.execute(sql, [refresh_token]);
   }
 
   static findByTokenAndId(token, id) {
-    const sql = 'SELECT *FROM tblUsers WHERE token = ? AND id=?';
+    const sql = 'SELECT *FROM tblusers WHERE token = ? AND id=?';
     return db.execute(sql, [token, id]);
   }
 
   static updatePassword(password, id) {
-    const sql = 'UPDATE tblUsers SET password = ? WHERE id=?';
+    const sql = 'UPDATE tblusers SET password = ? WHERE id=?';
     return db.query(sql, [password, id]);
   }
 
   static findById(id) {
-    const sql = `SELECT tblUsers.id,username,email,tblRoles.role_name,tblUsers.role_id,phone_number,password,tblUsers.status_id FROM tblUsers 
-    INNER JOIN tblRoles ON tblUsers.role_id = tblRoles.role_id 
-    INNER JOIN tblStatus ON tblUsers.status_id = tblStatus.id
-    WHERE tblUsers.id = ?`;
+    const sql = `SELECT tblusers.id,username,email,tblroles.role_name,tblusers.role_id,phone_number,password,tblusers.status_id FROM tblusers 
+    INNER JOIN tblroles ON tblusers.role_id = tblroles.role_id 
+    INNER JOIN tblstatus ON tblusers.status_id = tblstatus.id
+    WHERE tblusers.id = ?`;
     return db.execute(sql, [id]);
   }
 
   static deleteById(id) {
-    const sql = 'DELETE FROM tblUsers WHERE id = ?';
+    const sql = 'DELETE FROM tblusers WHERE id = ?';
     return db.execute(sql, [id]);
   }
 
   static updateOne(username, email, phone_number, role_id, status_id, id) {
     const sql =
-      'UPDATE tblUsers SET username=?,email=?,phone_number=?,role_id=?,status_id=? WHERE id = ?';
+      'UPDATE tblusers SET username=?,email=?,phone_number=?,role_id=?,status_id=? WHERE id = ?';
     return db.query(sql, [
       username,
       email,
@@ -104,18 +104,18 @@ class Users {
   }
 
   static update_duplicate(id, userName) {
-    const sql = 'SELECT *FROM tblUsers WHERE NOT id = ? AND username = ?';
+    const sql = 'SELECT *FROM tblusers WHERE NOT id = ? AND username = ?';
     return db.execute(sql, [id, userName]);
   }
 
   static duplicate_email(id, email) {
-    const sql = 'SELECT *FROM tblUsers WHERE NOT id = ? AND email = ?';
+    const sql = 'SELECT *FROM tblusers WHERE NOT id = ? AND email = ?';
     return db.execute(sql, [id, email]);
   }
 
   // check admin model
   static isAdmin(email) {
-    const sql = 'SELECT *FROM tblUsers WHERE tblUsers.email = ? AND role_id=1';
+    const sql = 'SELECT *FROM tblusers WHERE tblusers.email = ? AND role_id=1';
     return db.execute(sql, [email]);
   }
 }

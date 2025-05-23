@@ -10,7 +10,7 @@ class Customer {
 
   save() {
     const sql =
-      'INSERT INTO tblCustomers(customerName,phoneNumber,email,`address`) VALUES(?,?,?,?)';
+      'INSERT INTO tblcustomers(customerName,phoneNumber,email,`address`) VALUES(?,?,?,?)';
     return db.execute(sql, [
       this.customerName,
       this.phoneNumber,
@@ -20,18 +20,18 @@ class Customer {
   }
 
   static findByName(name) {
-    const sql = 'SELECT *FROM tblCustomers WHERE customerName = ?';
+    const sql = 'SELECT *FROM tblcustomers WHERE customerName = ?';
     return db.execute(sql, [name]);
   }
 
   static findByPhoneNumber(pn) {
-    const sql = 'SELECT *FROM tblCustomers WHERE phoneNumber = ?';
+    const sql = 'SELECT *FROM tblcustomers WHERE phoneNumber = ?';
     return db.execute(sql, [pn]);
   }
 
   static searchByName(name) {
     const sql =
-      "SELECT customerName,id FROM tblCustomers WHERE customerName LIKE concat(?,'%')";
+      "SELECT customerName,id FROM tblcustomers WHERE customerName LIKE concat(?,'%')";
     return db.execute(sql, [name]);
   }
 
@@ -51,7 +51,7 @@ class Customer {
   }
 
   static deleteById(id) {
-    const sql = 'DELETE FROM tblCustomers WHERE id = ?';
+    const sql = 'DELETE FROM tblcustomers WHERE id = ?';
     return db.execute(sql, [id]);
   }
 
@@ -61,12 +61,12 @@ class Customer {
   }
 
   static findById(id) {
-    const sql = 'SELECT *FROM tblCustomers WHERE id = ?';
+    const sql = 'SELECT *FROM tblcustomers WHERE id = ?';
     return db.execute(sql, [id]);
   }
 
   static checkUpdateDuplicate(id, phoneNumber) {
-    const sql = 'SELECT *FROM tblCustomers WHERE NOT id = ? AND phoneNumber=?';
+    const sql = 'SELECT *FROM tblcustomers WHERE NOT id = ? AND phoneNumber=?';
     return db.execute(sql, [id, phoneNumber]);
   }
 }

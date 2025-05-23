@@ -6,32 +6,32 @@ class ProductUnits {
   }
 
   save() {
-    const sql = 'INSERT INTO tblProductUnits(`unit`) VALUES(?)';
+    const sql = 'INSERT INTO tblproductunits(`unit`) VALUES(?)';
     return db.execute(sql, [this.unit]);
   }
 
   static findById(id) {
-    const sql = 'SELECT *FROM tblProductUnits WHERE id = ?';
+    const sql = 'SELECT *FROM tblproductunits WHERE id = ?';
     return db.execute(sql, [id]);
   }
 
   static findByUnit(unit) {
-    const sql = 'SELECT *FROM tblProductUnits WHERE unit = ?';
+    const sql = 'SELECT *FROM tblproductunits WHERE unit = ?';
     return db.execute(sql, [unit]);
   }
 
   static duplicateUnit(unit, id) {
-    const sql = 'SELECT *FROM tblProductUnits WHERE NOT id=? AND unit=?';
+    const sql = 'SELECT *FROM tblproductunits WHERE NOT id=? AND unit=?';
     return db.execute(sql, [id, unit]);
   }
 
   static updateById(unit, id) {
-    const sql = 'UPDATE tblProductUnits SET `unit`=? WHERE id = ?';
+    const sql = 'UPDATE tblproductunits SET `unit`=? WHERE id = ?';
     return db.query(sql, [unit, id]);
   }
 
   static deleteById(id) {
-    const sql = 'DELETE FROM tblProductUnits WHERE id = ?';
+    const sql = 'DELETE FROM tblproductunits WHERE id = ?';
     return db.query(sql, [id]);
   }
 
@@ -51,7 +51,7 @@ class ProductUnits {
   }
 
   static getAllUnits() {
-    const sql = 'SELECT * FROM tblProductUnits';
+    const sql = 'SELECT * FROM tblproductunits';
     return db.execute(sql);
   }
 }

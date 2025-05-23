@@ -7,25 +7,25 @@ class SaleDetail {
   }
   save() {
     const sql =
-      "INSERT INTO tblSaleDetails(sale_id,product_id,qty_sales) VALUES ?";
+      "INSERT INTO tblsaledetails(sale_id,product_id,qty_sales) VALUES ?";
     return db.query(sql, [
       this.products.map((item) => [item.sale_id, item.product_id, item.qty]),
     ]);
   }
 
   static deleteSaleDetails(sale_id) {
-    const sql = "DELETE FROM tblSaleDetails WHERE `sale_id` = ?";
+    const sql = "DELETE FROM tblsaledetails WHERE `sale_id` = ?";
     return db.query(sql, [sale_id]);
   }
 
-  static fetchSaleProduct(id) {
+  static fetchSaleProduct(id) {   
     const sql = "CALL SP_FetchSaleProduct(?)";
     return db.execute(sql, [id]);
   }
 
   static updateSaleQty(qty, sale_id, pro_id) {
     const sql =
-      "UPDATE tblSaleDetails SET qty_sales = ? WHERE sale_id = ? AND product_id = ?";
+      "UPDATE tblsaledetails SET qty_sales = ? WHERE sale_id = ? AND product_id = ?";
     return db.query(sql, [qty, sale_id, pro_id]);
   }
 }

@@ -9,7 +9,7 @@ class Sale {
   }
   save() {
     const sql =
-      "INSERT INTO tblSales(user_id,customer_id,invoice_id,sale_date,`desc`) VALUES(?,?,?,CURRENT_DATE(),?)";
+      "INSERT INTO tblsales(user_id,customer_id,invoice_id,sale_date,`desc`) VALUES(?,?,?,CURRENT_DATE(),?)";
     return db.execute(sql, [
       this.user_id,
       this.customer_id,
@@ -45,17 +45,17 @@ class Sale {
   }
 
   static todaySale() {
-    const sql = "SELECT *FROM V_todaySale";
+    const sql = "SELECT *FROM v_todaysale";
     return db.execute(sql);
   }
 
   static update_sale(id, customer_id, desc) {
-    const sql = "UPDATE tblSales SET customer_id=?,`desc`=? WHERE sale_id=?";
+    const sql = "UPDATE tblsales SET customer_id=?,`desc`=? WHERE sale_id=?";
     return db.query(sql, [id, customer_id, desc]);
   }
 
   static totalAmountAndPaymentType() {
-    const sql = "SELECT *FROM V_TotalPaymentToday";
+    const sql = "select *from v_totalpaymenttoday;";
     return db.execute(sql);
   }
   

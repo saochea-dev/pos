@@ -11,7 +11,7 @@ class Supplier {
 
   save() {
     const sql =
-      'INSERT INTO tblSupplies(`supName`,`companyName`,`email`,`phone`,`address`) VALUES(?,?,?,?,?)';
+      'INSERT INTO tblsupplies(`supName`,`companyName`,`email`,`phone`,`address`) VALUES(?,?,?,?,?)';
     return db.execute(sql, [
       this.supName,
       this.companyName,
@@ -33,37 +33,37 @@ class Supplier {
 
   static updateById(supName, companyName, email, phone, address, id) {
     const sql =
-      'UPDATE tblSupplies SET `supName`=?,`companyName`=?,`email`=?,`phone`=?,`address`=? WHERE `id` = ?';
+      'UPDATE tblsupplies SET `supName`=?,`companyName`=?,`email`=?,`phone`=?,`address`=? WHERE `id` = ?';
     return db.query(sql, [supName, companyName, email, phone, address, id]);
   }
 
   static deleteById(id) {
-    const sql = 'DELETE FROM tblSupplies WHERE id = ?';
+    const sql = 'DELETE FROM tblsupplies WHERE id = ?';
     return db.execute(sql, [id]);
   }
 
   static findByName(supName) {
-    const sql = 'SELECT *FROM tblSupplies WHERE supName=?';
+    const sql = 'SELECT *FROM tblsupplies WHERE supName=?';
     return db.execute(sql, [supName]);
   }
 
   static updateDuplicate(id, phone) {
-    const sql = 'SELECT *FROM tblSupplies WHERE NOT id=? AND phone=?';
+    const sql = 'SELECT *FROM tblsupplies WHERE NOT id=? AND phone=?';
     return db.execute(sql, [id, phone]);
   }
 
   static findById(id) {
-    const sql = 'SELECT *FROM tblSupplies WHERE id=?';
+    const sql = 'SELECT *FROM tblsupplies WHERE id=?';
     return db.execute(sql, [id]);
   }
 
   static findByPhoneNumber(phone) {
-    const sql = 'SELECT *FROM tblSupplies WHERE phone = ?';
+    const sql = 'SELECT *FROM tblsupplies WHERE phone = ?';
     return db.execute(sql, [phone]);
   }
 
   static getAllSuppliers() {
-    const sql = 'SELECT * FROM tblSupplies';
+    const sql = 'SELECT * FROM tblsupplies';
     return db.execute(sql);
   }
 }

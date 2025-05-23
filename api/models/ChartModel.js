@@ -2,7 +2,7 @@ const db = require('../config/db');
 
 class Chart {
   static daysChartData() {
-    const sql = 'SELECT *FROM V_ChartDayReports';
+    const sql = 'SELECT *FROM v_chartdayreports';
     return db.execute(sql);
   }
 }

@@ -7,33 +7,33 @@ class Category {
   }
 
   save() {
-    const sql = 'INSERT INTO tblCategories(`categoryName`,`desc`) VALUES(?,?)';
+    const sql = 'INSERT INTO tblcategories(`categoryName`,`desc`) VALUES(?,?)';
     return db.execute(sql, [this.categoryName, this.desc]);
   }
 
   static updateById(categoryName, desc, id) {
     const sql =
-      'UPDATE tblCategories SET `categoryName`=?,`desc`=? WHERE `id` = ?';
+      'UPDATE tblcategories SET `categoryName`=?,`desc`=? WHERE `id` = ?';
     return db.query(sql, [categoryName, desc, id]);
   }
 
   static deleteById(id) {
-    const sql = 'DELETE FROM tblCategories WHERE id = ?';
+    const sql = 'DELETE FROM tblcategories WHERE id = ?';
     return db.execute(sql, [id]);
   }
 
   static findById(id) {
-    const sql = 'SELECT *FROM tblCategories WHERE id=?';
+    const sql = 'SELECT *FROM tblcategories WHERE id=?';
     return db.execute(sql, [id]);
   }
 
   static findByName(catName) {
-    const sql = 'SELECT *FROM tblCategories WHERE categoryName=?';
+    const sql = 'SELECT *FROM tblcategories WHERE categoryName=?';
     return db.execute(sql, [catName]);
   }
 
   static updateDuplicate(id, catName) {
-    const sql = 'SELECT *FROM tblCategories WHERE NOT id=? AND categoryName=?';
+    const sql = 'SELECT *FROM tblcategories WHERE NOT id=? AND categoryName=?';
     return db.execute(sql, [id, catName]);
   }
 
@@ -53,7 +53,7 @@ class Category {
   }
 
   static getAllCategories() {
-    const sql = 'SELECT * FROM tblCategories';
+    const sql = 'SELECT * FROM tblcategories';
     return db.execute(sql);
   }
 }

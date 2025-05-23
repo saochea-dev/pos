@@ -2,7 +2,7 @@ const db = require("../config/db");
 
 class Payments {
   static findAllPaymentType() {
-    const sql = "SELECT *FROM tblPayments";
+    const sql = "SELECT *FROM tblpayments";
     return db.execute(sql);
   }
 }
