@@ -49,7 +49,7 @@ const ListSupplier = () => {
   // fetch data
   const fetchAllSuppliers = async () => {
     const { data } = await axios.get(
-      `http://localhost:3001/supplier?search=${keyword}&page=${page}&limit=${limit}`
+      `http://54.91.229.70:3001/supplier?search=${keyword}&page=${page}&limit=${limit}`
     );
     return data;
   };
@@ -75,7 +75,7 @@ const ListSupplier = () => {
     try {
       if (id !== '') {
         setLoading(true);
-        const res = await axios.delete(`http://localhost:3001/supplier/${id}`);
+        const res = await axios.delete(`http://54.91.229.70:3001/supplier/${id}`);
         if (res.data.success) {
           playAudio('http://localhost:3001/audio/audio-notification-sound.mp3');
           toast.success(`🦄 ${res.data.message}`, {
@@ -139,7 +139,7 @@ const ListSupplier = () => {
   // find one of customer
   const fetchOne = async (id) => {
     try {
-      const res = await axios.get(`http://localhost:3001/supplier/${id}`);
+      const res = await axios.get(`http://54.91.229.70:3001/supplier/${id}`);
       //console.log(res.data[0]);
       setSup({
         supName: res.data[0].supName,
@@ -165,12 +165,12 @@ const ListSupplier = () => {
     try {
       if (id !== '') {
         const res = await axios.put(
-          `http://localhost:3001/supplier/${id}`,
+          `http://54.91.229.70:3001/supplier/${id}`,
           sup
         );
         console.log(res);
         if (res.data.success) {
-          playAudio('http://localhost:3001/audio/audio-notification-sound.mp3');
+          playAudio('http://54.91.229.70:3001/audio/audio-notification-sound.mp3');
           toast.success(`${res.data.message}`, {
             position: 'top-center',
             autoClose: 4000,
@@ -184,7 +184,7 @@ const ListSupplier = () => {
           setId('');
           setOpenUpdate(false);
         } else {
-          playAudio('http://localhost:3001/audio/audio-notification-sound.mp3');
+          playAudio('http://54.91.229.70:3001/audio/audio-notification-sound.mp3');
           toast.error(`${res.data.message}`, {
             position: 'top-center',
             autoClose: 4000,

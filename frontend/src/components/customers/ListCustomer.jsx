@@ -58,7 +58,7 @@ const ListCustomer = () => {
   // fetch data
   const fetchAllCustomers = async () => {
     const { data } = await axios.get(
-      `http://localhost:3001/api/customers?search=${keyword}&page=${page}&limit=${limit}`
+      `http://54.91.229.70:3001/api/customers?search=${keyword}&page=${page}&limit=${limit}`
     );
     return data;
   };
@@ -74,10 +74,10 @@ const ListCustomer = () => {
       if (id !== '') {
         setLoading(true);
         const res = await axios.delete(
-          `http://localhost:3001/api/customers/${id}`
+          `http://54.91.229.70:3001/api/customers/${id}`
         );
         if (res.data.success) {
-          playAudio('http://localhost:3001/audio/audio-notification-sound.mp3');
+          playAudio('http://54.91.229.70:3001/audio/audio-notification-sound.mp3');
           toast.success(`🦄 ${res.data.message}`, {
             position: 'top-right',
             autoClose: 3000,
@@ -152,7 +152,7 @@ const ListCustomer = () => {
   // find one of customer
   const fetchOne = async (id) => {
     try {
-      const res = await axios.get(`http://localhost:3001/api/customers/${id}`);
+      const res = await axios.get(`http://54.91.229.70:3001/api/customers/${id}`);
       //console.log(res.data[0]);
       setCus({
         customerName: res.data[0].customerName,
@@ -174,12 +174,12 @@ const ListCustomer = () => {
     try {
       if (id !== '') {
         const res = await axios.put(
-          `http://localhost:3001/api/customers/${id}`,
+          `http://54.91.229.70:3001/api/customers/${id}`,
           cus
         );
         console.log(res);
         if (res.data.success) {
-          playAudio('http://localhost:3001/audio/audio-notification-sound.mp3');
+          playAudio('http://54.91.229.70:3001/audio/audio-notification-sound.mp3');
           toast.success(`${res.data.message}`, {
             position: 'top-center',
             autoClose: 4000,
@@ -193,7 +193,7 @@ const ListCustomer = () => {
           setId('');
           setOpenUpdate(false);
         } else {
-          playAudio('http://localhost:3001/audio/audio-notification-sound.mp3');
+          playAudio('http://54.91.229.70:3001/audio/audio-notification-sound.mp3');
           toast.error(`${res.data.message}`, {
             position: 'top-center',
             autoClose: 4000,

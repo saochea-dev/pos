@@ -72,7 +72,7 @@ const AddProduct = () => {
 
   const fetchCategories = async () => {
     try {
-      const res = await axios.get('http://localhost:3001/all_categories');
+      const res = await axios.get('http://54.91.229.70:3001/all_categories');
       setCategories(res.data);
     } catch (err) {
       console.log(err);
@@ -81,7 +81,7 @@ const AddProduct = () => {
 
   const fetchBrands = async () => {
     try {
-      const res = await axios.get('http://localhost:3001/all_brands');
+      const res = await axios.get('http://54.91.229.70:3001/all_brands');
       setBrands(res.data);
     } catch (err) {
       console.log(err);
@@ -91,7 +91,7 @@ const AddProduct = () => {
   // fetch units of product function
   async function fetchUnits() {
     try {
-      const res = await axios.get('http://localhost:3001/all_units');
+      const res = await axios.get('http://54.91.229.70:3001/all_units');
       setUnits(res.data);
     } catch (err) {
       console.log(err);
@@ -100,7 +100,7 @@ const AddProduct = () => {
 
   const fetchSupplies = async () => {
     try {
-      const res = await axios.get('http://localhost:3001/all_suppliers');
+      const res = await axios.get('http://54.91.229.70:3001/all_suppliers');
       setSupplies(res.data);
     } catch (err) {
       console.log(err);
@@ -109,7 +109,7 @@ const AddProduct = () => {
 
   const fetchStatus = async () => {
     try {
-      const res = await axios.get('http://localhost:3001/status');
+      const res = await axios.get('http://54.91.229.70:3001/status');
       setStatus(res.data);
     } catch (err) {
       console.log(err);
@@ -168,7 +168,7 @@ const AddProduct = () => {
       formData.append('reorder_number', product.reorder_number);
       if (formValidation() && isAlreadyExist && isValid) {
         const result = await axios.post(
-          'http://localhost:3001/products',
+          'http://54.91.229.70:3001/products',
           formData,
           {
             headers: {
@@ -177,7 +177,7 @@ const AddProduct = () => {
           }
         );
         if (result.data.success) {
-          playAudio('http://localhost:3001/audio/audio-notification-sound.mp3');
+          playAudio('http://54.91.229.70:3001/audio/audio-notification-sound.mp3');
           toast.success(`${result.data.message}`, {
             position: 'top-center',
             autoClose: 3000,
@@ -190,7 +190,7 @@ const AddProduct = () => {
           });
           clear_data();
         } else {
-          playAudio('http://localhost:3001/audio/audio-notification-sound.mp3');
+          playAudio('http://54.91.229.70:3001/audio/audio-notification-sound.mp3');
           toast.error(`${result.data.message}`, {
             position: 'top-center',
             autoClose: 3000,
@@ -212,7 +212,7 @@ const AddProduct = () => {
   const findProductName = async () => {
     try {
       const res = await axios.post(
-        `http://localhost:3001/product/query?q=${encodeURIComponent(
+        `http://54.91.229.70:3001/product/query?q=${encodeURIComponent(
           product.product_name
         )}`
       );
@@ -232,7 +232,7 @@ const AddProduct = () => {
   const findProductCode = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:3001/product_code/query?q=${encodeURIComponent(
+        `http://54.91.229.70:3001/product_code/query?q=${encodeURIComponent(
           product.product_code
         )}`
       );

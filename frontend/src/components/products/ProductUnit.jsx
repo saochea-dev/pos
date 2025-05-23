@@ -37,7 +37,7 @@ const ProductUnit = () => {
   // fetch units of product function
   const fetchUnits = async () => {
     const { data } = await axios.get(
-      `http://localhost:3001/product-units?search=${keyword}&page=${page}&limit=${limit}`
+      `http://54.91.229.70:3001/product-units?search=${keyword}&page=${page}&limit=${limit}`
     );
     return data;
   };
@@ -74,7 +74,7 @@ const ProductUnit = () => {
       } else {
         setSpin(true);
         const res = await axios.post(
-          'http://localhost:3001/product-units',
+          'http://54.91.229.70:3001/product-units',
           unit
         );
         if (res.data.success) {
@@ -100,7 +100,7 @@ const ProductUnit = () => {
     try {
       if (unit.unit.trim() !== '') {
         const res = await axios.put(
-          `http://localhost:3001/product-units/${unit.id}`,
+          `http://54.91.229.70:3001/product-units/${unit.id}`,
           unit
         );
         if (res.data.success) {
@@ -127,10 +127,10 @@ const ProductUnit = () => {
   const handleDelete = async (id) => {
     try {
       const res = await axios.delete(
-        `http://localhost:3001/product-units/${id}`
+        `http://54.91.229.70:3001/product-units/${id}`
       );
       if (res.data.success) {
-        playAudio('http://localhost:3001/audio/audio-notification-sound.mp3');
+        playAudio('http://54.91.229.70:3001/audio/audio-notification-sound.mp3');
         toast.success('🦄 ឯកតាត្រូវបានលុបដោយជោគជ័យ!', {
           position: 'top-right',
           autoClose: 3000,
@@ -143,7 +143,7 @@ const ProductUnit = () => {
         });
         fetchUnits();
       } else {
-        playAudio('http://localhost:3001/audio/audio-notification-sound.mp3');
+        playAudio('http://54.91.229.70:3001/audio/audio-notification-sound.mp3');
         toast.error(`🦄 ${res.data.message}`, {
           position: 'top-right',
           autoClose: 3000,

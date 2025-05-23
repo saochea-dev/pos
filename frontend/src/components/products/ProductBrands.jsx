@@ -48,7 +48,7 @@ const ProductBrands = () => {
   // fetch data
   const fetchBrands = async () => {
     const { data } = await axios.get(
-      `http://localhost:3001/brands?search=${keyword}&page=${page}&limit=${limit}`
+      `http://54.91.229.70:3001/brands?search=${keyword}&page=${page}&limit=${limit}`
     );
     return data;
   };
@@ -76,10 +76,10 @@ const ProductBrands = () => {
       if (brand.brandName === '') {
         setMsg('សូម! បញ្ចូលឈ្មោះម៉ាក');
       } else {
-        const res = await axios.post('http://localhost:3001/brands', brand);
+        const res = await axios.post('http://54.91.229.70:3001/brands', brand);
         if (res.data.success) {
           clearData();
-          playAudio('http://localhost:3001/audio/audio-notification-sound.mp3');
+          playAudio('http://54.91.229.70:3001/audio/audio-notification-sound.mp3');
           toast.success(`${res.data.message}`, {
             position: 'top-center',
             autoClose: 4000,
@@ -91,7 +91,7 @@ const ProductBrands = () => {
             theme: 'light',
           });
         } else {
-          playAudio('http://localhost:3001/audio/audio-notification-sound.mp3');
+          playAudio('http://54.91.229.70:3001/audio/audio-notification-sound.mp3');
           toast.error(`${res.data.message}`, {
             position: 'top-center',
             autoClose: 4000,
@@ -115,11 +115,11 @@ const ProductBrands = () => {
     try {
       if (brand.brandName.trim() !== '') {
         const res = await axios.put(
-          `http://localhost:3001/brands/${brand.id}`,
+          `http://54.91.229.70:3001/brands/${brand.id}`,
           brand
         );
         if (res.data.success) {
-          playAudio('http://localhost:3001/audio/audio-notification-sound.mp3');
+          playAudio('http://54.91.229.70:3001/audio/audio-notification-sound.mp3');
           clearData();
           setColorStle('bg-green-100 text-green-700');
           setMsg(res.data.message);
@@ -143,9 +143,9 @@ const ProductBrands = () => {
   const handleDelete = async () => {
     try {
       if(id===0||id==='') return;
-      const res = await axios.delete(`http://localhost:3001/brands/${id}`);
+      const res = await axios.delete(`http://54.91.229.70:3001/brands/${id}`);
       if (res.data.success) {
-        playAudio('http://localhost:3001/audio/audio-notification-sound.mp3');
+        playAudio('http://54.91.229.70:3001/audio/audio-notification-sound.mp3');
         toast.success(`🦄 ${res.data.message}`, {
           position: 'top-right',
           autoClose: 3000,

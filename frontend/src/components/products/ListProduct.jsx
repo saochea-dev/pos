@@ -35,7 +35,7 @@ const ListProduct = () => {
   const fetchOneById = async (id) => {
     try {
       const { data } = await axios.get(
-        `http://localhost:3001/view_products/${id}`
+        `http://54.91.229.70:3001/view_products/${id}`
       );
       setViewPro(data);
       setShowViewModal(true);
@@ -51,7 +51,7 @@ const ListProduct = () => {
   // fetch data
   const fetchAllProducts = async () => {
     const { data } = await axios.get(
-      `http://localhost:3001/products?search=${keyword}&page=${page}&limit=${limit}`
+      `http://54.91.229.70:3001/products?search=${keyword}&page=${page}&limit=${limit}`
     );
     return data;
   };
@@ -91,9 +91,9 @@ const ListProduct = () => {
     try {
       if (id !== '') {
         setLoading(true);
-        const res = await axios.delete(`http://localhost:3001/product/${id}`);
+        const res = await axios.delete(`http://54.91.229.70:3001/product/${id}`);
         if (res.data.success) {
-          playAudio('http://localhost:3001/audio/audio-notification-sound.mp3');
+          playAudio('http://54.91.229.70:3001/audio/audio-notification-sound.mp3');
           toast.success(`${res.data.message}`, {
             position: 'top-center',
             autoClose: 4000,
@@ -108,7 +108,7 @@ const ListProduct = () => {
           setLoading(false);
           // setId('');
         } else {
-          playAudio('http://localhost:3001/audio/audio-notification-sound.mp3');
+          playAudio('http://54.91.229.70:3001/audio/audio-notification-sound.mp3');
           toast.error(`${res.data.message}`, {
             position: 'top-center',
             autoClose: 4000,

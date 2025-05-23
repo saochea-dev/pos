@@ -58,7 +58,7 @@ const EditeProduct = () => {
   const fetchProductById = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:3001/product/${product_id}`
+        `http://54.91.229.70:3001/product/${product_id}`
       );
       console.log(data);
       setProduct({ ...data[0], exp_date: dateFormmat(data[0]) });
@@ -69,7 +69,7 @@ const EditeProduct = () => {
 
   const fetchCategories = async () => {
     try {
-      const res = await axios.get('http://localhost:3001/categories');
+      const res = await axios.get('http://54.91.229.70:3001/categories');
       setCategories(res.data.result);
     } catch (err) {
       console.log(err);
@@ -78,7 +78,7 @@ const EditeProduct = () => {
 
   const fetchBrands = async () => {
     try {
-      const res = await axios.get('http://localhost:3001/brands');
+      const res = await axios.get('http://54.91.229.70:3001/brands');
       setBrands(res.data.result);
     } catch (err) {
       console.log(err);
@@ -88,7 +88,7 @@ const EditeProduct = () => {
   // fetch units of product function
   async function fetchUnits() {
     try {
-      const res = await axios.get('http://localhost:3001/product-units');
+      const res = await axios.get('http://54.91.229.70:3001/product-units');
       setUnits(res.data.result);
     } catch (err) {
       console.log(err);
@@ -97,7 +97,7 @@ const EditeProduct = () => {
 
   const fetchSupplies = async () => {
     try {
-      const res = await axios.get('http://localhost:3001/supplier');
+      const res = await axios.get('http://54.91.229.70:3001/supplier');
       setSupplies(res.data.result);
     } catch (err) {
       console.log(err);
@@ -112,7 +112,7 @@ const EditeProduct = () => {
 
   const fetchStatus = async () => {
     try {
-      const res = await axios.get('http://localhost:3001/status');
+      const res = await axios.get('http://54.91.229.70:3001/status');
       setStatus(res.data);
     } catch (err) {
       console.log(err);
@@ -139,7 +139,7 @@ const EditeProduct = () => {
       formData.append('reorder_number', product.reorder_number);
 
       const result = await axios.put(
-        `http://localhost:3001/product/${product_id}`,
+        `http://54.91.229.70:3001/product/${product_id}`,
         formData,
         {
           headers: {
@@ -149,11 +149,11 @@ const EditeProduct = () => {
       );
 
       if (isDeleted) {
-        await axios.put(`http://localhost:3001/image/${product_id}`);
+        await axios.put(`http://54.91.229.70:3001/image/${product_id}`);
       }
 
       if (result.data.success) {
-        playAudio('http://localhost:3001/audio/audio-notification-sound.mp3');
+        playAudio('http://54.91.229.70:3001/audio/audio-notification-sound.mp3');
         toast.success(`${result.data.message}`, {
           position: 'top-center',
           autoClose: 4000,
@@ -166,7 +166,7 @@ const EditeProduct = () => {
         });
         navigate('/listproduct');
       } else {
-        playAudio('http://localhost:3001/audio/audio-notification-sound.mp3');
+        playAudio('http://54.91.229.70:3001/audio/audio-notification-sound.mp3');
         toast.error(`${result.data.message}`, {
           position: 'top-center',
           autoClose: 3000,

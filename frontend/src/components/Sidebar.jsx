@@ -45,7 +45,7 @@ const Sidebar = () => {
 
   const logoutHandler = async () => {
     try {
-      const res = await axios.get('http://localhost:3001/logout', {
+      const res = await axios.get('http://54.91.229.70:3001/logout', {
         withCredentials: true,
       });
       //console.log(res)
@@ -82,7 +82,7 @@ const Sidebar = () => {
       if (dbbackup.dbbackup !== '') {
         setLoading(true);
         const { data } = await axios.post(
-          'http://localhost:3001/api/restore',
+          'http://54.91.229.70:3001/api/restore',
           formData,
           {
             headers: {
@@ -92,7 +92,7 @@ const Sidebar = () => {
         );
 
         if (data.success) {
-          playAudio('http://localhost:3001/audio/audio-notification-sound.mp3');
+          playAudio('http://54.91.229.70:3001/audio/audio-notification-sound.mp3');
           toast.success(`${data.message}`, {
             position: 'top-center',
             autoClose: 4000,
@@ -105,7 +105,7 @@ const Sidebar = () => {
           });
           clear_data();
         } else {
-          playAudio('http://localhost:3001/audio/audio-notification-sound.mp3');
+          playAudio('http://54.91.229.70:3001/audio/audio-notification-sound.mp3');
           toast.error(`${data.message}`, {
             position: 'top-center',
             autoClose: 4000,
@@ -119,7 +119,7 @@ const Sidebar = () => {
           clear_data();
         }
       } else {
-        playAudio('http://localhost:3001/audio/audio-notification-sound.mp3');
+        playAudio('http://54.91.229.70:3001/audio/audio-notification-sound.mp3');
         toast.error(`សូម! ជ្រើសរើស File សម្រាប់ Restore.`, {
           position: 'top-center',
           autoClose: 4000,
@@ -156,7 +156,7 @@ const Sidebar = () => {
       '' +
       currentdate.getSeconds();
     try {
-      const res = await axios.get('http://localhost:3001/api/backup');
+      const res = await axios.get('http://54.91.229.70:3001/api/backup');
       const url = window.URL.createObjectURL(new Blob([res.data]));
       const link = document.createElement('a');
       link.href = url;

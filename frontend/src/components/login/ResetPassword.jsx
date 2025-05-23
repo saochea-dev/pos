@@ -32,7 +32,7 @@ const ResetPassword = () => {
         if (validEmail) {
           setSpin(true);
           const res = await axios.post(
-            'http://localhost:3001/reset_password_mail',
+            'http://54.91.229.70:3001/reset_password_mail',
             {
               email: email,
             }
@@ -41,7 +41,7 @@ const ResetPassword = () => {
           console.log(res);
           setMsg(res.data.message);
           if (res.data.success) {
-            playAudio('http://localhost:3001/audio/message-send.mp3');
+            playAudio('http://54.91.229.70:3001/audio/message-send.mp3');
             setColor('text-green-600');
             setEmail('');
             setSpin(false);

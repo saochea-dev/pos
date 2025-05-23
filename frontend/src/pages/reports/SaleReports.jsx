@@ -51,7 +51,7 @@ const SaleReports = () => {
   // fetch sale report method
   async function fetchSaleReports() {
     const { data } = await axios.get(
-      `http://localhost:3001/sale-reports?limit=${limit}&page=${page}&invoiceNumber=${keyword}&start_date=${
+      `http://54.91.229.70:3001/sale-reports?limit=${limit}&page=${page}&invoiceNumber=${keyword}&start_date=${
         selectedDate && selectedDate[0]
       }&end_date=${selectedDate && selectedDate[1]}`
     );

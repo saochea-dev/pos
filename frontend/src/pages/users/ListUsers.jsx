@@ -36,7 +36,7 @@ const ListUsers = () => {
   // fetch user function
   const fetchUsers = async () => {
     const { data } = await axios.get(
-      `http://localhost:3001/api/users?limit=${limit}&page=${page}&search=${keyword}`
+      `http://54.91.229.70:3001/api/users?limit=${limit}&page=${page}&search=${keyword}`
     );
     return data;
   };
@@ -81,12 +81,12 @@ const ListUsers = () => {
       } else {
         if (id !== '') {
           const { data } = await axios.put(
-            `http://localhost:3001/api/change-user-pwd/${id}`,
+            `http://54.91.229.70:3001/api/change-user-pwd/${id}`,
             password
           );
           if (data.success) {
             playAudio(
-              'http://localhost:3001/audio/audio-notification-sound.mp3'
+              'http://54.91.229.70:3001/audio/audio-notification-sound.mp3'
             );
             toast.success(`${data.message}`, {
               position: 'top-center',
@@ -107,7 +107,7 @@ const ListUsers = () => {
             closeChangePasswordModal();
           } else {
             playAudio(
-              'http://localhost:3001/audio/audio-notification-sound.mp3'
+              'http://54.91.229.70:3001/audio/audio-notification-sound.mp3'
             );
             toast.error(`${data.message}`, {
               position: 'top-center',
@@ -159,7 +159,7 @@ const ListUsers = () => {
 
   const fetchOne = async (id) => {
     try {
-      const res = await axios.get(`http://localhost:3001/api/user/${id}`);
+      const res = await axios.get(`http://54.91.229.70:3001/api/user/${id}`);
       // console.log(res.data[0])
       setUser({
         username: res.data[0].username,
@@ -188,10 +188,10 @@ const ListUsers = () => {
       if (id !== '') {
         setLoading(true);
         const res = await axios.delete(
-          `http://localhost:3001/api/delete/${id}`
+          `http://54.91.229.70:3001/api/delete/${id}`
         );
         if (res.data.success) {
-          playAudio('http://localhost:3001/audio/audio-notification-sound.mp3');
+          playAudio('http://54.91.229.70:3001/audio/audio-notification-sound.mp3');
           toast.success(`${res.data.message}`, {
             position: 'top-center',
             autoClose: 4000,
@@ -206,7 +206,7 @@ const ListUsers = () => {
           setLoading(false);
           setId('');
         } else {
-          playAudio('http://localhost:3001/audio/audio-notification-sound.mp3');
+          playAudio('http://54.91.229.70:3001/audio/audio-notification-sound.mp3');
           toast.error(`${res.data.message}`, {
             position: 'top-center',
             autoClose: 4000,
@@ -238,11 +238,11 @@ const ListUsers = () => {
     try {
       if (id !== '') {
         const res = await axios.put(
-          `http://localhost:3001/api/user/${id}`,
+          `http://54.91.229.70:3001/api/user/${id}`,
           user
         );
         if (res.data.success) {
-          playAudio('http://localhost:3001/audio/audio-notification-sound.mp3');
+          playAudio('http://54.91.229.70:3001/audio/audio-notification-sound.mp3');
           toast.success(`${res.data.message}`, {
             position: 'top-center',
             autoClose: 4000,
@@ -257,7 +257,7 @@ const ListUsers = () => {
           setLoading(false);
           setId('');
         } else {
-          playAudio('http://localhost:3001/audio/audio-notification-sound.mp3');
+          playAudio('http://54.91.229.70:3001/audio/audio-notification-sound.mp3');
           toast.error(`${res.data.message}`, {
             position: 'top-center',
             autoClose: 4000,

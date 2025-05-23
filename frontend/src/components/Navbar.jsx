@@ -39,7 +39,7 @@ const Navbar = () => {
   const [reorder, setRorder] = useState([]);
 
   const fetchReorder = async () => {
-    const { data } = await axios.get('http://localhost:3001/reorder');
+    const { data } = await axios.get('http://54.91.229.70:3001/reorder');
     return data;
   };
   const res = useQuery('reorder', fetchReorder);
@@ -49,7 +49,7 @@ const Navbar = () => {
   // msg product out of stock
   const [outStock, setOutStock] = useState([]);
   const fetchProductOutOfStock = async () => {
-    const { data } = await axios.get('http://localhost:3001/outofstock');
+    const { data } = await axios.get('http://54.91.229.70:3001/outofstock');
     return data;
   };
   const outstock = useQuery('outstock', fetchProductOutOfStock);
@@ -74,7 +74,7 @@ const Navbar = () => {
 
   const fetchUserById = async () => {
     const { data } = await axios.get(
-      `http://localhost:3001/api/user/${auth.id}`
+      `http://54.91.229.70:3001/api/user/${auth.id}`
     );
     return data;
   };
@@ -146,13 +146,13 @@ const Navbar = () => {
       try {
         if (validPwd !== false && match !== false) {
           const res = await axios.put(
-            `http://localhost:3001/change-password/${auth.id}`,
+            `http://54.91.229.70:3001/change-password/${auth.id}`,
             { password: password, newPassword: newPassword }
           );
           if (res.data.success) {
             clearFormData();
             playAudio(
-              'http://localhost:3001/audio/audio-notification-sound.mp3'
+              'http://54.91.229.70:3001/audio/audio-notification-sound.mp3'
             );
             toast.success(`🦄${res.data.message}`, {
               position: 'top-center',
@@ -167,7 +167,7 @@ const Navbar = () => {
           } else {
             clearFormData();
             playAudio(
-              'http://localhost:3001/audio/audio-notification-sound.mp3'
+              'http://54.91.229.70:3001/audio/audio-notification-sound.mp3'
             );
             toast.error(`🦄${res.data.message}`, {
               position: 'top-center',
@@ -193,7 +193,7 @@ const Navbar = () => {
 
   const logoutHandler = async () => {
     try {
-      const res = await axios.get('http://localhost:3001/logout', {
+      const res = await axios.get('http://54.91.229.70:3001/logout', {
         withCredentials: true,
       });
       //console.log(res)
@@ -217,12 +217,12 @@ const Navbar = () => {
   const updateUser = async () => {
     try {
       const res = await axios.put(
-        `http://localhost:3001/api/user/${auth.id}`,
+        `http://54.91.229.70:3001/api/user/${auth.id}`,
         user
       );
       //console.log(res)
       if (res.data.success) {
-        playAudio('http://localhost:3001/audio/audio-notification-sound.mp3');
+        playAudio('http://54.91.229.70:3001/audio/audio-notification-sound.mp3');
         toast.success(`${res.data.message}`, {
           position: 'top-center',
           autoClose: 4000,
@@ -235,7 +235,7 @@ const Navbar = () => {
         });
         auth.getUser(user.username);
       } else {
-        playAudio('http://localhost:3001/audio/audio-notification-sound.mp3');
+        playAudio('http://54.91.229.70:3001/audio/audio-notification-sound.mp3');
         toast.error(`${res.data.message}`, {
           position: 'top-center',
           autoClose: 4000,

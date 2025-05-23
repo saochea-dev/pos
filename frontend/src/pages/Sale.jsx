@@ -23,7 +23,7 @@ const Sale = () => {
   // fetch data function
   const fetchProducts = async () => {
     const { data } = await axios.get(
-      `http://localhost:3001/productcard?search=${keyword}`
+      `http://54.91.229.70:3001/productcard?search=${keyword}`
     );
     return data;
   };
@@ -115,11 +115,11 @@ const Sale = () => {
     try {
       if (customer.customerName !== '') {
         const res = await axios.post(
-          'http://localhost:3001/api/customer',
+          'http://54.91.229.70:3001/api/customer',
           customer
         );
         if (res.data.success) {
-          playAudio('http://localhost:3001/audio/audio-notification-sound.mp3');
+          playAudio('http://54.91.229.70:3001/audio/audio-notification-sound.mp3');
           toast.success(`🦄 ${res.data.message}`, {
             position: 'top-center',
             autoClose: 3000,
@@ -133,7 +133,7 @@ const Sale = () => {
           setOpen(false);
           fetchAllCustomer();
         } else {
-          playAudio('http://localhost:3001/audio/audio-notification-sound.mp3');
+          playAudio('http://54.91.229.70:3001/audio/audio-notification-sound.mp3');
           toast.error(`🦄 ${res.data.message}`, {
             position: 'top-center',
             autoClose: 3000,
@@ -183,7 +183,7 @@ const Sale = () => {
       // alert message
       if (exist.old_qty <= exist.qty) {
         playAudio(
-          'http://localhost:3001/audio/SOUND EFFECT -  APPLE iPhone X ALERTS  -  CHORD.mp4'
+          'http://54.91.229.70:3001/audio/SOUND EFFECT -  APPLE iPhone X ALERTS  -  CHORD.mp4'
         );
         toast.error('🦄 សូមអភ័យទោស! ចំនួនផលិតផលរបស់អ្នកមិនគ្រប់គ្រាន់ទេ', {
           position: 'top-center',
@@ -196,10 +196,10 @@ const Sale = () => {
           theme: 'light',
         });
       } else {
-        playAudio('http://localhost:3001/audio/sound_hello_iphone.mp4');
+        playAudio('http://54.91.229.70:3001/audio/sound_hello_iphone.mp4');
       }
     } else {
-      playAudio('http://localhost:3001/audio/sound_hello_iphone.mp4');
+      playAudio('http://54.91.229.70:3001/audio/sound_hello_iphone.mp4');
       setCartItems([
         ...cartItems,
         { ...product, qty: 1, old_qty: product.qty },
@@ -249,7 +249,7 @@ const Sale = () => {
       );
 
       if (qty > exist.old_qty) {
-        playAudio('http://localhost:3001/audio/audio-notification-sound.mp3');
+        playAudio('http://54.91.229.70:3001:3001/audio/audio-notification-sound.mp3');
         toast.error('🦄 សូមអភ័យទោស! ចំនួនផលិតផលរបស់អ្នកមិនគ្រប់គ្រាន់ទេ...!', {
           position: 'top-center',
           autoClose: 3000,
@@ -282,14 +282,14 @@ const Sale = () => {
     try {
       if (productCode !== '') {
         const { data } = await axios.get(
-          'http://localhost:3001/api/procode/' + productCode
+          'http://54.91.229.70:3001/api/procode/' + productCode
         );
         if (data.length > 0) {
           if (data[0].qty > 0) {
             onAdd(data[0]);
           } else {
             playAudio(
-              'http://localhost:3001/audio/audio-notification-sound.mp3'
+              'http://54.91.229.70:3001/audio/audio-notification-sound.mp3'
             );
             toast.error('🦄 សូមអភ័យទោស! ផលិតផលមិនមាននៅក្នុងស្តុកទេ', {
               position: 'top-center',
@@ -311,14 +311,14 @@ const Sale = () => {
 
   // fetch customer from api
   const fetchAllCustomer = async () => {
-    const cus = await axios.get('http://localhost:3001/api/customers');
+    const cus = await axios.get('http://54.91.229.70:3001/api/customers');
     setCustomers(cus.data.result);
     console.log(cus.data.result);
   };
 
   // fetch all category from api
   const fetchAllCategories = async () => {
-    const res = await axios.get('http://localhost:3001/categories');
+    const res = await axios.get('http://54.91.229.70:3001/categories');
     setCategories(res.data.result);
   };
 

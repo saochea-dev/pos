@@ -84,7 +84,7 @@ export const AuthProvider = ({ children }) => {
 
   const refreshToken = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/token", {
+      const response = await axios.get("http://54.91.229.70:3001/token", {
         withCredentials: true,
       });
       //console.log(response)

@@ -31,13 +31,13 @@ const ProductReport = () => {
 
   const fetchProductReports = async () => {
     const { data } = await axios.get(
-      `http://localhost:3001/api/product-reports?categoryId=${categoryId}&limits=${limit}&page=${page}&search=${keyword}`
+      `http://54.91.229.70:3001/api/product-reports?categoryId=${categoryId}&limits=${limit}&page=${page}&search=${keyword}`
     );
     return data;
   };
 
   const fetchCategories = async () => {
-    const { data } = await axios.get(`http://localhost:3001/categories`);
+    const { data } = await axios.get(`http://54.91.229.70:3001/categories`);
     return data;
   };
 

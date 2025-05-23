@@ -62,7 +62,7 @@ const Login = () => {
       if (validEmail && validPwd) {
         try {
           const res = await axios.post(
-            'http://localhost:3001/login',
+            'http://54.91.229.70:3001/login',
             {
               email,
               password,
@@ -88,7 +88,7 @@ const Login = () => {
             setEmail('');
             setPassword('');
             playAudio(
-              'http://localhost:3001/audio/audio-notification-sound.mp3'
+              'http://54.91.229.70:3001/audio/audio-notification-sound.mp3'
             );
             toast.error(`${res.data.message}`, {
               position: 'top-center',

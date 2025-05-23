@@ -9,7 +9,7 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 
 // =========== fetch user role function ============
 const fetchRoles = async () => {
-  const { data } = await axios.get('http://localhost:3001/api/roles');
+  const { data } = await axios.get('http://54.91.229.70:3001/api/roles');
   return data;
 };
 
@@ -18,7 +18,7 @@ const fetchRoles = async () => {
 const regUsername = /^[a-zA-Z]{3,}.*/
 // fetch status from api
 const fetchStatus = async () => {
-  const { data } = await axios.get('http://localhost:3001/status');
+  const { data } = await axios.get('http://54.91.229.70:3001/status');
   return data;
 };
 
@@ -112,10 +112,10 @@ const Adduser = () => {
         setRoleMsg('សូម! ជ្រើសរើសតួនាទីអ្នកប្រើប្រាស់');
       } else {
         if(valid && isValidUsername){
-        const res = await axios.post('http://localhost:3001/api/user', user);
+        const res = await axios.post('http://54.91.229.70:3001/api/user', user);
         if (res.data.success) {
           clear_data();
-          playAudio('http://localhost:3001/audio/audio-notification-sound.mp3');
+          playAudio('http://54.91.229.70:3001/audio/audio-notification-sound.mp3');
           toast.success(`${res.data.message}`, {
             position: 'top-center',
             autoClose: 4000,
@@ -127,7 +127,7 @@ const Adduser = () => {
             theme: 'light',
           });
         } else {
-          playAudio('http://localhost:3001/audio/audio-notification-sound.mp3');
+          playAudio('http://54.91.229.70:3001/audio/audio-notification-sound.mp3');
           toast.error(`${res.data.message}`, {
             position: 'top-center',
             autoClose: 4000,

@@ -37,12 +37,12 @@ const AddCustomer = () => {
         setPnMsg('សូម! បញ្ចូលលេខទូរស័ព្ទ');
       } else {
         const res = await axios.post(
-          'http://localhost:3001/api/customer',
+          'http://54.91.229.70:3001/api/customer',
           customer
         );
         if (res.data.success) {
           clearData();
-          playAudio('http://localhost:3001/audio/audio-notification-sound.mp3');
+          playAudio('http://54.91.229.70:3001/audio/audio-notification-sound.mp3');
           toast.success(`${res.data.message}`, {
             position: 'top-center',
             autoClose: 4000,
@@ -54,7 +54,7 @@ const AddCustomer = () => {
             theme: 'light',
           });
         } else {
-          playAudio('http://localhost:3001/audio/audio-notification-sound.mp3');
+          playAudio('http://54.91.229.70:3001/audio/audio-notification-sound.mp3');
           toast.error(`${res.data.message}`, {
             position: 'top-center',
             autoClose: 4000,

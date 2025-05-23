@@ -27,7 +27,7 @@ const StockReports = () => {
 
   const fetchStockReport = async () => {
     const { data } = await axios.get(
-      `http://localhost:3001/stock_report?qty=${value}&limit=${limit}&search=${keyword}&page=${page}`
+      `http://54.91.229.70:3001/stock_report?qty=${value}&limit=${limit}&search=${keyword}&page=${page}`
     );
     return data;
   };

@@ -42,7 +42,7 @@ const Category = () => {
 
   const fetchCategories = async () => {
     const { data } = await axios.get(
-      `http://localhost:3001/categories?limit=${limit}&page=${page}&search=${keyword}`
+      `http://54.91.229.70:3001/categories?limit=${limit}&page=${page}&search=${keyword}`
     );
     return data;
   };
@@ -65,12 +65,12 @@ const Category = () => {
     try {
       if (category.categoryName.trim() !== '') {
         const res = await axios.post(
-          'http://localhost:3001/categories',
+          'http://54.91.229.70:3001/categories',
           category
         );
         // console.log(res)
         if (res.data.success) {
-          playAudio('http://localhost:3001/audio/audio-notification-sound.mp3');
+          playAudio('http://54.91.229.70:3001/audio/audio-notification-sound.mp3');
           clearData();
           setMsg(res.data.message);
           setColorStle('bg-green-100 text-green-700');
@@ -94,7 +94,7 @@ const Category = () => {
     try {
       if (category.categoryName.trim() !== '') {
         const res = await axios.put(
-          `http://localhost:3001/categories/${category.id}`,
+          `http://54.91.229.70:3001/categories/${category.id}`,
           category
         );
         if (res.data.success) {
@@ -121,9 +121,9 @@ const Category = () => {
 
   const handleDelete = async (id) => {
     try {
-      const res = await axios.delete(`http://localhost:3001/categories/${id}`);
+      const res = await axios.delete(`http://54.91.229.70:3001/categories/${id}`);
       if (res.data.success) {
-        playAudio('http://localhost:3001/audio/audio-notification-sound.mp3');
+        playAudio('http://54.91.229.70:3001/audio/audio-notification-sound.mp3');
         toast.success(`🦄 ${res.data.message}`, {
           position: 'top-right',
           autoClose: 3000,
@@ -137,7 +137,7 @@ const Category = () => {
         fetchCategories();
         clearData();
       } else {
-        playAudio('http://localhost:3001/audio/audio-notification-sound.mp3');
+        playAudio('http://54.91.229.70:3001/audio/audio-notification-sound.mp3');
         toast.error(`🦄 ${res.data.message}`, {
           position: 'top-right',
           autoClose: 3000,

@@ -44,7 +44,7 @@ function playAudio(url) {
 }
 
 const fetchChartData = async () => {
-  const { data } = await axios.get('http://localhost:3001/api/days_chart');
+  const { data } = await axios.get('http://54.91.229.70:3001/api/days_chart');
   return data;
 };
 
@@ -88,12 +88,12 @@ const dashboard = () => {
   };
 
   const fetchOverall = async () => {
-    const { data } = await axios.get`http://localhost:3001/countItems`;
+    const { data } = await axios.get`http://54.91.229.70:3001/countItems`;
     return data;
   };
 
   const fetchTodaySale = async () => {
-    const { data } = await axios.get`http://localhost:3001/today-sale`;
+    const { data } = await axios.get`http://54.91.229.70:3001/today-sale`;
     return data;
   };
 
@@ -287,7 +287,7 @@ const dashboard = () => {
               if (!res.isLoading && res.data.result.length === 0) {
                 setIsModalOpen(false);
                 playAudio(
-                  'http://localhost:3001/audio/audio-notification-sound.mp3'
+                  'http://54.91.229.70:3001/audio/audio-notification-sound.mp3'
                 );
                 toast.error('សូមអរភ័យទោស...! គ្នានការលក់នៅក្នុងថ្ងៃនេះទេ', {
                   position: 'top-center',

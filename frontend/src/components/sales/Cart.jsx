@@ -14,7 +14,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const fetchPayment = async () => {
-  const { data } = await axios.get('http://localhost:3001/api/payments');
+  const { data } = await axios.get('http://54.91.229.70:3001/api/payments');
   return data;
 };
 
@@ -127,22 +127,22 @@ const Cart = (props) => {
   const handleUpdateSale = async () => {
     try {
       const invoice = await axios.put(
-        `http://localhost:3001/api/invoices/${auth.sale_id}`,
+        `http://54.91.229.70:3001/api/invoices/${auth.sale_id}`,
         { amount: paid, payment_id: payemntType, remain: remain }
       );
       //console.log(invoice);
       const sale = await axios.put(
-        `http://localhost:3001/api/sales/${auth.sale_id}`,
+        `http://54.91.229.70:3001/api/sales/${auth.sale_id}`,
         { customer_id: customerId, desc: desc }
       );
       await addSaleID(auth.sale_id);
       const saleDetail = await axios.put(
-        `http://localhost:3001/api/sale_detail/${auth.sale_id}`,
+        `http://54.91.229.70:3001/api/sale_detail/${auth.sale_id}`,
         products
       );
       console.log(saleDetail);
       if (saleDetail.data.success) {
-        playAudio('http://localhost:3001/audio/audio-notification-sound.mp3');
+        playAudio('http://54.91.229.70:3001/audio/audio-notification-sound.mp3');
         toast.success(`ការលក់ត្រូវបានកែប្រែជោគជ័យ!`, {
           position: 'top-center',
           autoClose: 4000,
@@ -173,12 +173,12 @@ const Cart = (props) => {
         setPaymentMsg('សូម! ជ្រើសរើសការបង់ប្រាក់');
       } else {
         setPaymentMsg('');
-        const invoice = await axios.post('http://localhost:3001/api/invoice', {
+        const invoice = await axios.post('http://54.91.229.70:3001/api/invoice', {
           amount: paid,
           payment_id: payemntType,
           remain: remain,
         });
-        const sale = await axios.post('http://localhost:3001/api/sale', {
+        const sale = await axios.post('http://54.91.229.70:3001/api/sale', {
           user_id: auth.id,
           invoice_id: invoice.data.id,
           customer_id: customerId,
@@ -186,12 +186,12 @@ const Cart = (props) => {
         });
         await addSaleID(sale.data.id);
         const saleDetail = await axios.post(
-          'http://localhost:3001/api/sale_detail',
+          'http://54.91.229.70:3001/api/sale_detail',
           products
         );
         if (saleDetail.data.success) {
           const res = await axios.get(
-            `http://localhost:3001/api/saleInvoice/${sale.data.id}`
+            `http://54.91.229.70:3001/api/saleInvoice/${sale.data.id}`
           );
           setInvoice(res.data[0]);
           setOpen(false);
