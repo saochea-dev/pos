@@ -46,7 +46,7 @@ const NewPassword = () => {
   // validate user
   const userValidate = async () => {
     const res = await axios.get(
-      `http://54.91.229.70:3001/forgotpassword/${userid}/${token}`
+      `https://54.91.229.70:3001/forgotpassword/${userid}/${token}`
     );
     setLoading(true);
     pwdRef.current?.focus();
@@ -68,7 +68,7 @@ const NewPassword = () => {
         if (validPwd) {
           setSpin(true);
           const res = await axios.put(
-            `http://54.91.229.70:3001/forgotpassword/${userid}/${token}`,
+            `https://54.91.229.70:3001/forgotpassword/${userid}/${token}`,
             { password: password }
           );
           //console.log(res.data)
@@ -77,7 +77,7 @@ const NewPassword = () => {
             setComfirmPassword('');
             setDisable(true);
             playAudio(
-              'http://54.91.229.70:3001/audio/audio-notification-sound.mp3'
+              'https://54.91.229.70:3001/audio/audio-notification-sound.mp3'
             );
             toast.success(`🦄 ${res.data.message}.`, {
               position: 'top-right',
@@ -93,7 +93,7 @@ const NewPassword = () => {
             navigate('/login');
           } else {
             playAudio(
-              'http://54.91.229.70:3001/audio/audio-notification-sound.mp3'
+              'https://54.91.229.70:3001/audio/audio-notification-sound.mp3'
             );
             toast.error(`🦄 ${res.data.message}`, {
               position: 'top-right',

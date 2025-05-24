@@ -68,7 +68,7 @@ const ListSale = () => {
   const handleUpdateSale = async (id) => {
     if (id !== '') {
       const { data } = await axios.get(
-        `http://54.91.229.70:3001/api/sale_products/${id}`
+        `https://54.91.229.70:3001/api/sale_products/${id}`
       );
       console.log(data);
       if (data && data.length > 0) {
@@ -86,11 +86,11 @@ const ListSale = () => {
     try {
       if (sale_id > 0) {
         const { data } = await axios.delete(
-          `http://54.91.229.70:3001/api/sale/${sale_id}`
+          `https://54.91.229.70:3001/api/sale/${sale_id}`
         );
         if (data.success) {
           setOpen(false);
-          playAudio('http://54.91.229.70:3001/audio/audio-notification-sound.mp3');
+          playAudio('https://54.91.229.70:3001/audio/audio-notification-sound.mp3');
           toast.success(`${data.message}`, {
             position: 'top-center',
             autoClose: 4000,
@@ -102,7 +102,7 @@ const ListSale = () => {
             theme: 'light',
           });
         } else {
-          playAudio('http://54.91.229.70:3001/audio/audio-notification-sound.mp3');
+          playAudio('https://54.91.229.70:3001/audio/audio-notification-sound.mp3');
           toast.error(`${data.message}`, {
             position: 'top-center',
             autoClose: 4000,
@@ -161,7 +161,7 @@ const ListSale = () => {
   // fetch list sale data
   const fetchListSales = async () => {
     const { data } = await axios.get(
-      `http://54.91.229.70:3001/api/list-sales?limit=${limit}&page=${page}&search=${keyword}&user_id=${
+      `https://54.91.229.70:3001/api/list-sales?limit=${limit}&page=${page}&search=${keyword}&user_id=${
         auth.id
       }&role=${+auth.isAdmin}`
     );
@@ -179,7 +179,7 @@ const ListSale = () => {
   const fetchInvoiceSale = async (id = 0) => {
     if (id > 0) {
       const { data } = await axios.get(
-        `http://54.91.229.70:3001/api/view_invoice/${id}`
+        `https://54.91.229.70:3001/api/view_invoice/${id}`
       );
       setInvoice(data[0]);
       setSaleId(0);
