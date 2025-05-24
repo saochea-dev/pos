@@ -65,9 +65,10 @@ app.use((err, req, res, next) => {
 
 
 const options = {
-  key: fs.readFileSync('/etc/letsencrypt/live/yourdomain.com/privkey.pem'),
-  cert: fs.readFileSync('/etc/letsencrypt/live/yourdomain.com/fullchain.pem')
+  key: fs.readFileSync('/home/ubuntu/certs/privkey.pem'),
+  cert: fs.readFileSync('/home/ubuntu/certs/fullchain.pem')
 };
+
 
 const PORT = process.env.PORT || 3001;
 https.createServer(options, app).listen(PORT, () => {
