@@ -1,4 +1,5 @@
 require('dotenv').config(); // ALLOWS ENVIRONMENT VARIABLES TO BE SET ON PROCESS.ENV SHOULD BE AT TOP
+const fs = require('fs');
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -62,6 +63,17 @@ app.use((err, req, res, next) => {
   });
 });
 
+
+const options = {
+  key: fs.readFileSync('/etc/letsencrypt/live/yourdomain.com/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/yourdomain.com/fullchain.pem')
+};
+
+const PORT = process.env.PORT || 3001;
+https.createServer(options, app).listen(PORT, () => {
+  console.log('HTTPS server running on port 3001');
+});
+
 // Listen on pc port
-const PORT = process.env.PORT || 4000;
-app.listen(PORT, () => console.log(`Server running on PORT ${PORT}`));
+
+// app.listen(PORT, () => console.log(`Server running on PORT ${PORT}`));
