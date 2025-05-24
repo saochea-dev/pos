@@ -28,7 +28,7 @@ const app = express();
 app.use(
   cors({
     credentials: true,
-    origin: 'http://localhost:5173',
+    origin: 'https://pos-2f9d.onrender.com',
   })
 );
 app.use(cookieParser());
