@@ -42,6 +42,7 @@ module.exports.saleInvoice = async (req, res, next) => {
     let amount = 0;
     let moneyChange = 0;
     let invoiceNumber = '';
+    let customerName = '';
 
     invoice[0].map((item) => {
       total += item.subtotal;
@@ -49,6 +50,8 @@ module.exports.saleInvoice = async (req, res, next) => {
       saller =
         'អ្នកលក់: ' +
         item.username +
+        'អតិថិជន​ ' +
+        item.customerName +
         '\nលេខវិក័យប័ត្រ: ' +
         invoiceNumber +
         '\nកាលបរិច្ឆេទ: ' +
