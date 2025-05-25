@@ -1,5 +1,6 @@
 const Invoice = require('../models/InvoiceModel');
 const TelegramBot = require('node-telegram-bot-api');
+const moment = require('moment-timezone');
 require('dotenv').config();
 const send_message = (message) => {
   try {
@@ -7,7 +8,7 @@ const send_message = (message) => {
     const chatId = process.env.CHAT_ID;
     const bot = new TelegramBot(token, { polling: true });
     bot.sendMessage(chatId, message);
-  } catch (err) {}
+  } catch (err) { }
 };
 
 module.exports.create = async (req, res, next) => {
@@ -46,6 +47,11 @@ module.exports.saleInvoice = async (req, res, next) => {
     invoice[0].map((item) => {
       total += item.subtotal;
       invoiceNumber = item.invoice_number;
+
+      const formattedDate = moment()
+        .tz('Asia/Phnom_Penh')
+        .format('DD-MM-YYYY hh:mm:ss A');
+
       saller =
         'អ្នកលក់: ' +
         item.username +
@@ -54,7 +60,7 @@ module.exports.saleInvoice = async (req, res, next) => {
         '\nលេខវិក័យប័ត្រ: ' +
         invoiceNumber +
         '\nកាលបរិច្ឆេទ: ' +
-        item.sale_date +
+        formattedDate +
         '\n\n';
 
       payment = 'បង់ដោយ: ' + item.payment_type;
@@ -76,13 +82,13 @@ module.exports.saleInvoice = async (req, res, next) => {
     if (text !== '' && saller !== '' && total !== 0) {
       send_message(
         saller +
-          text +
-          'ប្រាក់សរុប: $' +
-          total +
-          '.00\n' +
-          payment +
-          amount +
-          moneyChange
+        text +
+        'ប្រាក់សរុប: $' +
+        total +
+        '.00\n' +
+        payment +
+        amount +
+        moneyChange
       );
     }
     // ========= end of message =============
