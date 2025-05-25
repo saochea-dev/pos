@@ -32,6 +32,7 @@ module.exports.saleInvoice = async (req, res, next) => {
   try {
     const [invoice] = await Invoice.saleInvoice(req.params.id);
 
+    console.log(invoice);
     // ========= send message to telegram ==========
 
     let text = '';
