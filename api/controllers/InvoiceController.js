@@ -49,7 +49,7 @@ module.exports.saleInvoice = async (req, res, next) => {
       saller =
         'អ្នកលក់: ' +
         item.username +
-        '\nអតិថិជន​ ' +
+        '\nអតិថិជន:​ ' +
         item.customerName +
         '\nលេខវិក័យប័ត្រ: ' +
         invoiceNumber +
